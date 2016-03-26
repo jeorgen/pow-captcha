@@ -1,0 +1,43 @@
+<html>
+<head>
+<script src="./asmcrypto.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+
+<script>
+function win_lottery(){
+    var textel = document.getElementById('message')
+    var text = textel.value + 'jorgenmodin.net'
+    var sf = document.getElementById('status')
+    var nonce = 0
+    var unsolved = true
+    while (unsolved) {
+    nonce++
+    ticket = parseInt('0x' + asmCrypto.SHA256.hex(text + nonce))
+    if (ticket > 2e+75){
+     console.log("Too big " + ticket)
+    }
+    else {
+     console.log("Success: " + ticket + "with n = " + nonce)
+     unsolved = false
+
+    }
+    }
+    console.log(nonce)
+} 
+</script>
+</head>
+<body>
+
+    <form >
+<textarea id="message">
+
+</textarea>
+<div id="status">
+
+</div>
+    </form>
+<button onclick="win_lottery()">Post</button>
+
+</body>
+</html>
+
